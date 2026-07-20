@@ -1,124 +1,164 @@
 import streamlit as st
 import pandas as pd
+from utils.data_loader import load_data
 
+# ------------------------------
+# Page Configuration
+# ------------------------------
 st.set_page_config(
     page_title="AI Recommendations",
     page_icon="🤖",
     layout="wide"
 )
 
+# ------------------------------
+# Title
+# ------------------------------
 st.title("🤖 AI Cost Optimization Recommendations")
+st.caption("AI-generated suggestions to reduce AWS cloud costs")
 
-st.caption("Smart recommendations to reduce AWS spending")
-
-# ------------------------
+# ------------------------------
 # Load Data
-# ------------------------
+# ------------------------------
+df = load_data()
 
-df = pd.read_csv("data/aws_costs.csv")
-
+# ------------------------------
+# Service Cost Summary
+# ------------------------------
 service_cost = (
     df.groupby("service")["cost"]
     .sum()
     .sort_values(ascending=False)
 )
 
-total = service_cost.sum()
+total_cost = service_cost.sum()
 
 st.metric(
-    "Estimated Monthly Spend",
-    f"${total:.2f}"
+    "💰 Estimated Monthly Spend",
+    f"${total_cost:,.2f}"
 )
 
 st.divider()
 
-# ------------------------
-# Recommendation Engine
-# ------------------------
-
+# ------------------------------
+# AI Recommendation Engine
+# ------------------------------
 recommendations = []
 
 for service, cost in service_cost.items():
 
     if service == "EC2":
         recommendations.append({
-            "Priority":"🔴 High",
-            "Service":"EC2",
-            "Savings":cost*0.30,
-            "Recommendation":"Rightsize or stop idle EC2 instances."
-        })
-
-    elif service == "S3":
-        recommendations.append({
-            "Priority":"🟠 Medium",
-            "Service":"S3",
-            "Savings":cost*0.20,
-            "Recommendation":"Move infrequently accessed objects to Glacier."
+            "Priority": "🔴 High",
+            "Service": "EC2",
+            "Current Cost": round(cost, 2),
+            "Potential Savings": round(cost * 0.30, 2),
+            "Recommendation": "Rightsize or terminate idle EC2 instances."
         })
 
     elif service == "RDS":
         recommendations.append({
-            "Priority":"🔴 High",
-            "Service":"RDS",
-            "Savings":cost*0.25,
-            "Recommendation":"Use Reserved Instances for production databases."
+            "Priority": "🔴 High",
+            "Service": "RDS",
+            "Current Cost": round(cost, 2),
+            "Potential Savings": round(cost * 0.25, 2),
+            "Recommendation": "Purchase Reserved Instances for long-running databases."
+        })
+
+    elif service == "S3":
+        recommendations.append({
+            "Priority": "🟠 Medium",
+            "Service": "S3",
+            "Current Cost": round(cost, 2),
+            "Potential Savings": round(cost * 0.20, 2),
+            "Recommendation": "Move cold data to Glacier or Intelligent-Tiering."
         })
 
     elif service == "Lambda":
         recommendations.append({
-            "Priority":"🟢 Low",
-            "Service":"Lambda",
-            "Savings":cost*0.15,
-            "Recommendation":"Optimize function execution duration."
+            "Priority": "🟢 Low",
+            "Service": "Lambda",
+            "Current Cost": round(cost, 2),
+            "Potential Savings": round(cost * 0.15, 2),
+            "Recommendation": "Reduce execution time and memory allocation."
         })
 
     elif service == "CloudFront":
         recommendations.append({
-            "Priority":"🟡 Medium",
-            "Service":"CloudFront",
-            "Savings":cost*0.10,
-            "Recommendation":"Improve cache hit ratio."
+            "Priority": "🟡 Medium",
+            "Service": "CloudFront",
+            "Current Cost": round(cost, 2),
+            "Potential Savings": round(cost * 0.10, 2),
+            "Recommendation": "Increase cache hit ratio and optimize CDN behavior."
+        })
+
+    else:
+        recommendations.append({
+            "Priority": "🟢 Low",
+            "Service": service,
+            "Current Cost": round(cost, 2),
+            "Potential Savings": round(cost * 0.05, 2),
+            "Recommendation": "Review usage and eliminate unnecessary resources."
         })
 
 recommend_df = pd.DataFrame(recommendations)
 
-st.subheader("Recommendations")
+# ------------------------------
+# Recommendations Table
+# ------------------------------
+st.subheader("📋 AI Recommendations")
 
 st.dataframe(
     recommend_df,
     use_container_width=True
 )
 
-st.divider()
+# ------------------------------
+# Savings Summary
+# ------------------------------
+total_savings = recommend_df["Potential Savings"].sum()
 
-total_savings = recommend_df["Savings"].sum()
+st.divider()
 
 st.success(
 f"""
-## 💰 Estimated Savings
+## 💰 Estimated Monthly Savings
 
-You could save approximately
+### Potential Savings
 
-# ${total_savings:.2f}
+**${total_savings:,.2f}**
 
-per month by implementing the recommendations above.
+By applying these recommendations, your estimated monthly AWS bill can be significantly reduced.
 """
 )
 
-st.subheader("Executive Summary")
+# ------------------------------
+# Executive Summary
+# ------------------------------
+st.subheader("📄 Executive Summary")
+
+highest_service = service_cost.idxmax()
 
 st.info(
-"""
-Top priorities:
+f"""
+### AI Analysis
 
-• Rightsize EC2 instances
+• Highest spending service: **{highest_service}**
 
-• Optimize RDS pricing
+• Estimated monthly spend: **${total_cost:,.2f}**
 
-• Move cold S3 data to Glacier
+• Estimated monthly savings: **${total_savings:,.2f}**
 
-• Improve CloudFront caching
+### Recommended Priorities
 
-• Optimize Lambda execution time
+✅ Rightsize EC2 instances
+
+✅ Optimize RDS pricing
+
+✅ Archive unused S3 objects
+
+✅ Improve CloudFront caching
+
+✅ Optimize Lambda execution
 """
 )
