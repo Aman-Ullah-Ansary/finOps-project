@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from utils.data_loader import load_data
 
 # ------------------------------
 # Page Configuration
@@ -31,10 +32,7 @@ st.sidebar.info(
 # ------------------------------
 # Load Data
 # ------------------------------
-df = pd.read_csv("data/aws_costs.csv")
-
-# Convert date column
-df["date"] = pd.to_datetime(df["date"])
+df = load_data()
 
 # ------------------------------
 # Sidebar Filters
@@ -55,19 +53,27 @@ end_date = st.sidebar.date_input(
     value=df["date"].max()
 )
 
+# ------------------------------
 # Apply Filters
+# ------------------------------
 df = df[
-    (df["service"].isin(selected_services)) &
-    (df["date"] >= pd.to_datetime(start_date)) &
-    (df["date"] <= pd.to_datetime(end_date))
+    (df["service"].isin(selected_services))
+    & (df["date"] >= pd.to_datetime(start_date))
+    & (df["date"] <= pd.to_datetime(end_date))
 ]
 
 # ------------------------------
 # Dashboard Title
 # ------------------------------
 st.title("☁️ AI Cloud FinOps Platform")
-
 st.caption("AI-Powered Cloud Cost Optimization Dashboard")
+
+# ------------------------------
+# Handle Empty Data
+# ------------------------------
+if df.empty:
+    st.warning("No data available for the selected filters.")
+    st.stop()
 
 # ------------------------------
 # KPI Calculations
