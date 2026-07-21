@@ -10,16 +10,39 @@ A free, open-source FinOps tool that analyzes AWS billing data to detect cost an
 - Built AI-assisted cloud cost analysis and 30-day spend forecasting
 - Deployed in a production-style environment on AWS EC2 behind Nginx
 
-## 🏗 Architecture
+## Architecture
 
-<details> <summary>View text-based architecture (fallback)</summary>
-Internet → AWS EC2 → Nginx → Docker → SentinelCost App
-                                          │
-                        ┌─────────────────┼─────────────────┐
-                        ▼                 ▼                 ▼
-                  Prometheus         Grafana        Node Exporter / cAdvisor
+<details>
+<summary>View Architecture</summary>
+
+```text
+                 Internet
+                     │
+                     ▼
+                AWS EC2 Instance
+                     │
+                     ▼
+                  Nginx
+                     │
+                     ▼
+            Docker Compose Stack
+                     │
+      ┌──────────────┼──────────────┐
+      ▼              ▼              ▼
+ SentinelCost   Prometheus      Grafana
+      │                              ▲
+      │                              │
+      └──────────────┐        ┌──────┘
+                     ▼        ▼
+          Node Exporter   cAdvisor
+```
+
+</details>
+
 
 ## 🔁 Workflow
+```text
+
 AWS Cost Data
      ↓
 AI Analysis
@@ -33,7 +56,7 @@ Recommendations
 Grafana
      ↓
 User
-
+```
 
 ## Features
 - 📊 **Cost visualization** — daily spend broken down by AWS service (EC2, S3, RDS, Lambda, CloudFront)
@@ -53,19 +76,22 @@ DevOps / CI-CD: GitHub Actions
 100% free and open-source — no paid AI APIs, no paid infrastructure required.
 
 ## 📂 Project Structure
-Finops-project/
+
+```text
+finOps-project/
 ├── app.py                  # Streamlit dashboard (main entry point)
 ├── pages/                  # Multi-page Streamlit views
 ├── auth/                   # Authentication logic
-├── monitoring/             # Prometheus/Grafana configs
-├── assets/                 # Images, static assets
-├── docs/                   # Architecture diagram, demo GIF
+├── monitoring/             # Prometheus & Grafana configuration
+├── assets/                 # Images and static assets
+├── docs/                   # Architecture diagrams and demo GIF
 ├── screenshots/            # README screenshots
 ├── utils/                  # Forecasting, anomaly detection, recommendations
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
+```
 
 
 ## How to run locally
