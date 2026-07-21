@@ -1,6 +1,9 @@
+streamlit
 pandas
 numpy
-scikit-learn
-streamlit
 plotly
+scikit-learn
 boto3
+groq
+python-dotenv
+openpyxl
