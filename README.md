@@ -175,6 +175,52 @@ AI Recommendations — Groq-powered LLM engine analyzes usage patterns and propo
  - Conversational AI ChatOps interface
 
 
+## 📸 Screenshots
+
+<details>
+<summary><b>📷 Click to view all screenshots (19)</b></summary>
+
+<br>
+
+<img width="1917" height="827" alt="Screenshot 2026-07-21 122931" src="https://github.com/user-attachments/assets/f3be14f0-3c86-464d-9ab4-0fea3b621572" />
+
+<img width="1908" height="748" alt="Screenshot 2026-07-21 144441" src="https://github.com/user-attachments/assets/16aa8d0d-8a8c-41bd-bbb8-2ce3e07ecf35" />
+
+<img width="1910" height="911" alt="Screenshot 2026-07-21 160455" src="https://github.com/user-attachments/assets/7dbcd918-8c7b-412f-a424-87eb04222e90" />
+
+<img width="1917" height="961" alt="Screenshot 2026-07-21 161213" src="https://github.com/user-attachments/assets/f91ff89d-dfcf-41aa-ba93-9c87b2c20520" />
+
+<img width="1602" height="857" alt="Screenshot 2026-07-21 205918" src="https://github.com/user-attachments/assets/529eb8d2-fd27-4fe7-9e2a-397ac94b3103" />
+
+<img width="1878" height="916" alt="Screenshot 2026-07-21 210153" src="https://github.com/user-attachments/assets/bcbbd783-5d8a-4f15-a087-fc12c2896dfc" />
+
+<img width="1482" height="757" alt="Screenshot 2026-07-21 210339" src="https://github.com/user-attachments/assets/565c76d3-3375-4e53-a2c0-b57697a23941" />
+
+<img width="1917" height="1021" alt="Screenshot 2026-07-21 210521" src="https://github.com/user-attachments/assets/5e328b6e-02c7-4264-8c5c-0669a7e03131" />
+
+<img width="1572" height="802" alt="Screenshot 2026-07-21 210557" src="https://github.com/user-attachments/assets/18f65bbe-30d3-47f0-8f00-c016d19e9baa" />
+
+<img width="1910" height="793" alt="Screenshot 2026-07-21 210641" src="https://github.com/user-attachments/assets/5d2da984-953e-43a8-b490-3982fa5635d2" />
+
+<img width="1917" height="863" alt="Screenshot 2026-07-21 210656" src="https://github.com/user-attachments/assets/416dd8bd-a54d-4310-aa4c-78e37476f211" />
+
+<img width="1917" height="863" alt="Screenshot 2026-07-21 210709" src="https://github.com/user-attachments/assets/c8a63719-6341-4663-8d4a-2844096e1874" />
+
+<img width="1915" height="837" alt="Screenshot 2026-07-21 210726" src="https://github.com/user-attachments/assets/a19883eb-1a52-404b-9745-e4f196b7dbd2" />
+
+<img width="1915" height="848" alt="Screenshot 2026-07-21 210746" src="https://github.com/user-attachments/assets/999824aa-7287-4a33-99c2-e6e76a10e3e3" />
+
+<img width="1917" height="863" alt="Screenshot 2026-07-21 210813" src="https://github.com/user-attachments/assets/9990d777-82bb-4195-9751-039a682b8959" />
+
+<img width="1917" height="637" alt="Screenshot 2026-07-21 210849" src="https://github.com/user-attachments/assets/56a34019-e302-4c0a-9bd5-16df64f81b9b" />
+
+<img width="1917" height="583" alt="Screenshot 2026-07-21 210934" src="https://github.com/user-attachments/assets/82b8d30d-970b-4e3f-9090-ff7585a32525" />
+
+<img width="1916" height="856" alt="Screenshot 2026-07-21 211024" src="https://github.com/user-attachments/assets/b530fcbd-e92a-424b-b1db-4c50672213cd" />
+
+<img width="1917" height="802" alt="Screenshot 2026-07-21 211037" src="https://github.com/user-attachments/assets/370d07c1-0b7c-43ab-8509-2c3bff7406f5" />
+
+</details>
 
 
 ## Using real AWS data instead of synthetic data
