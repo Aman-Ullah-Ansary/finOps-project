@@ -97,11 +97,12 @@ finOps-project/
 ## How to run locally
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/ai-finops-aws-optimizer.git
-cd ai-finops-aws-optimizer
+git clone https://github.com/Aman-Ullah-Ansary/finOps-project.git
+cd finOps-project
 pip install -r requirements.txt
 python generate_data.py     # creates sample billing data
 streamlit run app.py        # launches the dashboard
+
 ```
 
 [ Then open the link shown in your terminal  ]
